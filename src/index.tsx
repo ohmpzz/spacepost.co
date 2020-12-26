@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './index.css'
-import Layout from './Layout'
+import { Layout } from './Layout'
 import reportWebVitals from './reportWebVitals'
 
 ReactDOM.render(
