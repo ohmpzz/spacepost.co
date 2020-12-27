@@ -1,85 +1,84 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core/styles'
-import { AppBar as AppBarMd } from '@material-ui/core'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
-import styled from '@emotion/styled'
-import { rhythm } from 'src/utils'
-interface TabPanelProps {
-    children?: React.ReactNode
-    index: any
-    value: any
-}
+import AppBar from '@material-ui/core/AppBar'
+import Toolbar from '@material-ui/core/Toolbar'
+import InputBase from '@material-ui/core/InputBase'
+import { createStyles, fade, Theme, makeStyles } from '@material-ui/core/styles'
+import SearchIcon from '@material-ui/icons/Search'
 
-function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props
+const useStyles = makeStyles((theme: Theme) =>
+    createStyles({
+        backgroundNav: { backgroundColor: 'black' },
+        root: {
+            flexGrow: 1,
+        },
+        menuButton: {
+            marginRight: theme.spacing(2),
+        },
 
-    return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`simple-tabpanel-${index}`}
-            aria-labelledby={`simple-tab-${index}`}
-            {...other}
-        >
-            {value === index && (
-                <Box p={3}>
-                    <Typography>{children}</Typography>
-                </Box>
-            )}
-        </div>
-    )
-}
+        search: {
+            position: 'relative',
+            borderRadius: theme.shape.borderRadius,
+            backgroundColor: fade(theme.palette.common.white, 0.15),
+            '&:hover': {
+                backgroundColor: fade(theme.palette.common.white, 0.25),
+            },
+            marginLeft: 0,
+            width: '100%',
+            [theme.breakpoints.up('sm')]: {
+                marginLeft: theme.spacing(1),
+                width: 'auto',
+            },
+        },
+        searchIcon: {
+            padding: theme.spacing(0, 2),
+            height: '100%',
+            position: 'absolute',
+            pointerEvents: 'none',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+        },
+        inputRoot: {
+            color: 'inherit',
+        },
+        inputInput: {
+            padding: theme.spacing(1, 1, 1, 0),
+            // vertical padding + font size from searchIcon
+            paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+            transition: theme.transitions.create('width'),
+            width: '100%',
+            [theme.breakpoints.up('sm')]: {
+                width: '0.001ch',
+                '&:focus': {
+                    width: '15ch',
+                },
+            },
+        },
+    })
+)
 
-function a11yProps(index: any) {
-    return {
-        id: `simple-tab-${index}`,
-        'aria-controls': `simple-tabpanel-${index}`,
-    }
-}
-const AppBar = styled(AppBarMd)`
-    background-color: black;
-    margin-bottom: ${rhythm(1)};
-`
-const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-        flexGrow: 1,
-        backgroundColor: theme.palette.background.paper,
-    },
-}))
-
-export default function SimpleTabs() {
+export default function SearchAppBar() {
     const classes = useStyles()
-    const [value, setValue] = React.useState(0)
-
-    const handleChange = (event: React.ChangeEvent<{}>, newValue: number) => {
-        setValue(newValue)
-    }
 
     return (
         <div className={classes.root}>
-            <AppBar position="static">
-                <Tabs
-                    value={value}
-                    onChange={handleChange}
-                    aria-label="simple tabs example"
-                >
-                    <Tab label="หน้าแรกนาจา" {...a11yProps(0)} />
-                    <Tab label="หน้าสองนาจา" {...a11yProps(1)} />
-                    <Tab label="หน้าสามนาจา" {...a11yProps(2)} />
-                </Tabs>
+            <AppBar position="static" className={classes.backgroundNav}>
+                <Toolbar>
+                    <div className={classes.search}>
+                        <div className={classes.searchIcon}>
+                            <SearchIcon />
+                        </div>
+                        <InputBase
+                            placeholder="Search…"
+                            classes={{
+                                root: classes.inputRoot,
+                                input: classes.inputInput,
+                            }}
+                            inputProps={{ 'aria-label': 'search' }}
+                        />
+                    </div>
+                </Toolbar>
             </AppBar>
-            <TabPanel value={value} index={0}>
-                หน้าแรกนาจา
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-                หน้าสองนาจา
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-                หน้าสามนาจา
-            </TabPanel>
         </div>
     )
 }
