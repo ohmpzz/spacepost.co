@@ -1,8 +1,8 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
-
+import SimpleBar from 'src/components/Layout/Navbar'
 export function IndexPage(props: RouteComponentProps) {
-    return <>Hello, The Space Post</>
+    return <SimpleBar />
 }
 
 export default IndexPage
