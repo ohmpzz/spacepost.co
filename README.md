@@ -1,6 +1,10 @@
 # The Space Post
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/bc8a6014-35bc-4228-8372-0672e4f0226c/deploy-status)](https://app.netlify.com/sites/spacepost/deploys)
+
 News, Launch, and stuff
+
+[spacepost.co](https://spacepost.netlify.app/)
 
 ## Available Scripts
 
