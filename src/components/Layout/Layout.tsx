@@ -1,9 +1,11 @@
 import React from 'react'
 
-interface LayoutProps {}
+interface LayoutProps {
+    children: React.ReactNode
+}
 
 export function Layout(props: LayoutProps) {
-    return <>This is Layout,, For Navbar and stuff</>
+    return <main>{props.children}</main>
 }
 
 export default Layout

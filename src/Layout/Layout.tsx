@@ -38,7 +38,7 @@ const theme = createMuiTheme({
     //     error,
     // },
     typography: {
-        fontFamily: ['Kanit'].join(''),
+        fontFamily: ['Libre Franklin'].join(''),
     },
 })
 
