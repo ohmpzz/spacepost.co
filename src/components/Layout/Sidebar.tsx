@@ -7,7 +7,6 @@ import {
     createStyles,
 } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import List from '@material-ui/core/List'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -66,7 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export default function PersistentDrawerLeft() {
+export function Burgher() {
     const classes = useStyles()
     const theme = useTheme()
     const [open, setOpen] = React.useState(false)
@@ -144,3 +143,4 @@ export default function PersistentDrawerLeft() {
         </>
     )
 }
+export default Burgher

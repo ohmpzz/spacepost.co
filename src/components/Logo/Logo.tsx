@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+
 import { rhythm, scale } from 'src/utils'
 
 const TaglineDecoration = styled.div`

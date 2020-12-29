@@ -1,9 +1,8 @@
 import React from 'react'
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
-import Typography from '@material-ui/core/Typography'
+import Hidden from '@material-ui/core/Hidden'
 import Burgher from './Sidebar'
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -19,17 +18,19 @@ const useStyles = makeStyles((theme: Theme) =>
     })
 )
 
-export default function PersistentDrawerLeft() {
+export function Navbar() {
     const classes = useStyles()
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
             <AppBar position="fixed" className={classes.navColor}>
                 <Toolbar>
-                    <Burgher />
+                    <Hidden mdUp>
+                        <Burgher />
+                    </Hidden>
                 </Toolbar>
             </AppBar>
         </div>
     )
 }
+export default Navbar
