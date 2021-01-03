@@ -1,1 +1,1 @@
-export * from './TitleDecoration'
+export { TitleDecoration as default } from './TitleDecoration'

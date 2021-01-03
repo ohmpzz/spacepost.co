@@ -7,7 +7,7 @@ const Decoration = styled.div`
     &:before {
         position: relative;
         background-color: #111;
-        height: 1px;
+        height: 0.5px;
         display: block;
         top: 0.75rem;
         z-index: -1;

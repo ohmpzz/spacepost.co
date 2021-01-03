@@ -63,8 +63,8 @@ export function Navbar() {
 
     const Mobile = (
         <Hidden smDown>
-            <Grid container spacing={1}>
-                <Grid item lg={12} md={12} sm={12} alignItems="stretch">
+            <Grid container spacing={1} alignItems="stretch">
+                <Grid item lg={12} md={12} sm={12}>
                     <ul
                         style={{
                             listStyle: 'none',

@@ -1,8 +1,9 @@
 import React from 'react'
 import { RouteComponentProps } from 'react-router-dom'
 import Hidden from '@material-ui/core/Hidden'
-import { Logo, TitleDecoration } from 'src/components'
+import { Logo, TitleDecoration, ArticleCard } from 'src/components'
 import { Container, Grid } from '@material-ui/core'
+import { spaceNewsMock } from 'src/models'
 
 export function IndexPage(props: RouteComponentProps) {
     return (
@@ -12,13 +13,17 @@ export function IndexPage(props: RouteComponentProps) {
             </Hidden>
             <Container>
                 <Grid container spacing={4}>
-                    <Grid item lg={6} md={6} sm={6}>
-                        <TitleDecoration>ตัวอย่าง</TitleDecoration>
-                        <p>Hello, The Space Post</p>
-                    </Grid>
-
-                    <Grid item lg={6} md={6} sm={6}>
-                        <TitleDecoration>Blog</TitleDecoration>
+                    <Grid item lg={3} md={3} sm={3}>
+                        <TitleDecoration>Articles</TitleDecoration>
+                        {spaceNewsMock.map((article) => (
+                            <div key={article?.id} style={{ height: '350px' }}>
+                                <ArticleCard
+                                    article={article}
+                                    api="articles"
+                                    variant="verticle"
+                                />
+                            </div>
+                        ))}
                     </Grid>
                 </Grid>
             </Container>

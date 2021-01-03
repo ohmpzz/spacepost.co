@@ -19,10 +19,16 @@ const TaglineDecoration = styled.div`
 export function Logo() {
     return (
         <>
-            <h1 style={{ textAlign: 'center', marginBottom: rhythm(2 / 5) }}>
+            <h1
+                style={{
+                    textAlign: 'center',
+                    marginBottom: rhythm(4 / 5),
+                    ...scale(1.5),
+                }}
+            >
                 The Space Post
             </h1>
-            <TaglineDecoration style={{ ...scale(1.25 / 5) }}>
+            <TaglineDecoration>
                 <span
                     style={{
                         display: 'inline-block',
