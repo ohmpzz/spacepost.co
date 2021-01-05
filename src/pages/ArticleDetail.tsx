@@ -5,7 +5,7 @@ import { Container, Grid } from '@material-ui/core'
 import { TitleDecoration, ArticleCard } from 'src/components'
 import { getIdFromSlug, scale, rhythm } from 'src/utils'
 import { format } from 'date-fns'
-
+import useFetchSpaceNewsAPI from 'src/hooks/useFetchSpaceNewsAPI'
 import { API, spaceNewsMock, SpaceNews } from 'src/models'
 
 const categoryFont = scale(0 / 5)
@@ -29,8 +29,10 @@ const CoverImg = styled.img`
 // todo ดึงข้อมูลตาม id และ api
 export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
+    console.log({ params })
     const id = getIdFromSlug(params?.id)
-
+    const blogs = useFetchSpaceNewsAPI(params.api, { id })
+    console.log({ blogs })
     const [news, setNews] = useState<SpaceNews | null>(null)
     useEffect(() => {
         const spaceNewsMap = new Map()

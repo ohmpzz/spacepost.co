@@ -22,6 +22,12 @@ export interface SpaceNews {
     updatedAt: string
 }
 
+export interface Option {
+    id?: string
+    _limit?: number
+    _sort?: Sort
+}
+
 export type API = 'articles' | 'blogs' | 'reports'
 
 export const spaceNewsMock: SpaceNews[] = [
