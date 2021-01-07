@@ -31,18 +31,19 @@ export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
     console.log({ params })
     const id = getIdFromSlug(params?.id)
-    const blogs = useFetchSpaceNewsAPI(params.api, { id })
-    console.log({ blogs })
-    const [news, setNews] = useState<SpaceNews | null>(null)
-    useEffect(() => {
-        const spaceNewsMap = new Map()
-        spaceNewsMock.forEach((news) => {
-            spaceNewsMap.set(news.id, news)
-        })
-        if (spaceNewsMap.has(id)) {
-            setNews(spaceNewsMap.get(id))
-        }
-    }, [id])
+    console.log({ id })
+    const news = useFetchSpaceNewsAPI<SpaceNews>(params.api, { id })
+    console.log({ news })
+    // const [news, setNews] = useState<SpaceNews | null>(null)
+    // useEffect(() => {
+    //     const spaceNewsMap = new Map()
+    //     spaceNewsMock.forEach((news) => {
+    //         spaceNewsMap.set(news.id, news)
+    //     })
+    //     if (spaceNewsMap.has(id)) {
+    //         setNews(spaceNewsMap.get(id))
+    //     }
+    // }, [id])
     return (
         <Container maxWidth="lg">
             <Category>{params.api}</Category>
