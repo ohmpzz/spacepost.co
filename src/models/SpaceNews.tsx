@@ -21,6 +21,13 @@ export interface SpaceNews {
     events: Event[]
     updatedAt: string
 }
+export type Sort = keyof SpaceNews
+
+export interface Option {
+    id?: string
+    _limit?: number
+    _sort?: Sort
+}
 
 export type API = 'articles' | 'blogs' | 'reports'
 

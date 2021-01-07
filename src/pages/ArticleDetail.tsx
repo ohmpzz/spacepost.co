@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { RouteComponentProps, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Container, Grid } from '@material-ui/core'
 import { TitleDecoration, ArticleCard } from 'src/components'
 import { getIdFromSlug, scale, rhythm } from 'src/utils'
 import { format } from 'date-fns'
-
+import useFetchSpaceNewsAPI from 'src/hooks/useFetchSpaceNewsAPI'
 import { API, spaceNewsMock, SpaceNews } from 'src/models'
 
 const categoryFont = scale(0 / 5)
@@ -29,18 +29,10 @@ const CoverImg = styled.img`
 // todo ดึงข้อมูลตาม id และ api
 export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
+    console.log({ params })
     const id = getIdFromSlug(params?.id)
+    const news = useFetchSpaceNewsAPI<SpaceNews>(params.api, { id })
 
-    const [news, setNews] = useState<SpaceNews | null>(null)
-    useEffect(() => {
-        const spaceNewsMap = new Map()
-        spaceNewsMock.forEach((news) => {
-            spaceNewsMap.set(news.id, news)
-        })
-        if (spaceNewsMap.has(id)) {
-            setNews(spaceNewsMap.get(id))
-        }
-    }, [id])
     return (
         <Container maxWidth="lg">
             <Category>{params.api}</Category>

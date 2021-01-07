@@ -12,6 +12,7 @@ interface ArticleCardProps {
 
 export function ArticleCard(props: ArticleCardProps) {
     const { variant, ...newProps } = props
+
     switch (variant) {
         case 'aside':
             return <Aside {...newProps} />
