@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { RouteComponentProps, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Container, Grid } from '@material-ui/core'
@@ -31,19 +31,8 @@ export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
     console.log({ params })
     const id = getIdFromSlug(params?.id)
-    console.log({ id })
     const news = useFetchSpaceNewsAPI<SpaceNews>(params.api, { id })
-    console.log({ news })
-    // const [news, setNews] = useState<SpaceNews | null>(null)
-    // useEffect(() => {
-    //     const spaceNewsMap = new Map()
-    //     spaceNewsMock.forEach((news) => {
-    //         spaceNewsMap.set(news.id, news)
-    //     })
-    //     if (spaceNewsMap.has(id)) {
-    //         setNews(spaceNewsMap.get(id))
-    //     }
-    // }, [id])
+
     return (
         <Container maxWidth="lg">
             <Category>{params.api}</Category>
