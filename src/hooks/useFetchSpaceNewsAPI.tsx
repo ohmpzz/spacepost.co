@@ -3,10 +3,7 @@ import axios, { AxiosResponse, AxiosError } from 'axios'
 import queryString from 'query-string'
 import { API, Option } from 'src/models'
 
-export default function useFetchSpaceNewsAPI<T>(
-    api: API,
-    option?: Option
-): T | null {
+export function useFetchSpaceNewsAPI<T>(api: API, option?: Option): T | null {
     const [datas, setDatas] = useState<T | null>(null)
     const id = option?.id
 
@@ -34,3 +31,5 @@ export default function useFetchSpaceNewsAPI<T>(
 
     return datas
 }
+
+export default useFetchSpaceNewsAPI

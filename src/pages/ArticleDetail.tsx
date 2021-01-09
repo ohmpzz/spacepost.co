@@ -2,11 +2,11 @@ import React from 'react'
 import { RouteComponentProps, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Container, Grid } from '@material-ui/core'
-import { TitleDecoration, ArticleCard } from 'src/components'
+import { TitleDecoration } from 'src/components'
 import { getIdFromSlug, scale, rhythm } from 'src/utils'
 import { format } from 'date-fns'
 import useFetchSpaceNewsAPI from 'src/hooks/useFetchSpaceNewsAPI'
-import { API, spaceNewsMock, SpaceNews } from 'src/models'
+import { API, SpaceNews } from 'src/models'
 
 const categoryFont = scale(0 / 5)
 
@@ -26,10 +26,9 @@ const CoverImg = styled.img`
     width: 100%;
 `
 
-// todo ดึงข้อมูลตาม id และ api
+// todo เพิ่ม article card ตรง latest
 export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
-    console.log({ params })
     const id = getIdFromSlug(params?.id)
     const news = useFetchSpaceNewsAPI<SpaceNews>(params.api, { id })
 
@@ -81,16 +80,7 @@ export function ArticleDetail(props: RouteComponentProps) {
                 <Grid item lg={3} md={3}>
                     <aside>
                         <TitleDecoration>Latest</TitleDecoration>
-                        <div>
-                            {spaceNewsMock.map((news) => (
-                                <ArticleCard
-                                    key={news.id}
-                                    variant="aside"
-                                    api="articles"
-                                    article={news}
-                                />
-                            ))}
-                        </div>
+                        <div>article card</div>
                     </aside>
                 </Grid>
             </Grid>
