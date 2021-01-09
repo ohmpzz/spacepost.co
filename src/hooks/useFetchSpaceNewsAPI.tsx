@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import queryString from 'query-string'
 import { API, Option, SpaceNews } from 'src/models'
+import urljoin from 'url-join'
 
 export function useFetchSpaceNewsAPI(api: API) {
     const BASE_URL = `https://www.spaceflightnewsapi.net/api/v2`
@@ -12,7 +13,8 @@ export function useFetchSpaceNewsAPI(api: API) {
             if (option && Object.keys(option).length > 0) {
                 stringified = queryString.stringify(option)
             }
-            const URL = BASE_URL + `/${api}?${stringified}`
+
+            const URL = urljoin(BASE_URL, api, `?${stringified}`)
 
             axios
                 .get(URL)
@@ -25,7 +27,7 @@ export function useFetchSpaceNewsAPI(api: API) {
     function GetById(id: string) {
         const [news, setNews] = useState<SpaceNews | null>(null)
         useEffect(() => {
-            const URL = BASE_URL + `/${api}/${id}`
+            const URL = urljoin(BASE_URL, api, id)
             axios
                 .get(URL)
                 .then((res: AxiosResponse) => setNews(res.data))
