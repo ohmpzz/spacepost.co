@@ -5,8 +5,8 @@ import { Container, Grid } from '@material-ui/core'
 import { TitleDecoration } from 'src/components'
 import { getIdFromSlug, scale, rhythm } from 'src/utils'
 import { format } from 'date-fns'
-import useFetchSpaceNewsAPI from 'src/hooks/useFetchSpaceNewsAPI'
-import { API, SpaceNews } from 'src/models'
+import { useFetchSpaceNewsAPI } from 'src/hooks'
+import { API } from 'src/models'
 
 const categoryFont = scale(0 / 5)
 
@@ -30,7 +30,7 @@ const CoverImg = styled.img`
 export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
     const id = getIdFromSlug(params?.id)
-    const news = useFetchSpaceNewsAPI<SpaceNews>(params.api, { id })
+    const news = useFetchSpaceNewsAPI(params.api).GetById(id)
 
     return (
         <Container maxWidth="lg">

@@ -4,10 +4,10 @@ import Hidden from '@material-ui/core/Hidden'
 import { Logo, TitleDecoration, ArticleCard } from 'src/components'
 import { Container, Grid } from '@material-ui/core'
 import { useFetchSpaceNewsAPI } from 'src/hooks'
-import { SpaceNews } from 'src/models'
 
 export function IndexPage(props: RouteComponentProps) {
-    const news = useFetchSpaceNewsAPI<SpaceNews[]>('articles', { _limit: 10 })
+    const news = useFetchSpaceNewsAPI('articles').GetAll({ _limit: 10 })
+    console.log({ news })
     return (
         <>
             <Hidden smDown>
