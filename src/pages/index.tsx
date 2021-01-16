@@ -1,35 +1,52 @@
 import React from 'react'
-import { RouteComponentProps } from 'react-router-dom'
-import Hidden from '@material-ui/core/Hidden'
-import { Logo, TitleDecoration, ArticleCard } from 'src/components'
-import { Container, Grid } from '@material-ui/core'
+import { Logo, ArticleCard, ArticleCardSkeleton } from 'src/components'
+import { Container, Grid, Hidden } from '@material-ui/core'
 import { useFetchSpaceNewsAPI } from 'src/hooks'
+export function IndexPage() {
+    const { news, loading } = useFetchSpaceNewsAPI('articles').GetAll({
+        _limit: 10,
+    })
 
-export function IndexPage(props: RouteComponentProps) {
-    const news = useFetchSpaceNewsAPI('articles').GetAll({ _limit: 10 })
-    console.log({ news })
+    const Skeleton = (
+        <Grid container spacing={2}>
+            {[...Array(4)].map((x) => (
+                <Grid item lg={3} md={3} sm={3} style={{ height: '350px' }}>
+                    <ArticleCardSkeleton />
+                </Grid>
+            ))}
+        </Grid>
+    )
+    const DataCard = (
+        <Grid container spacing={2}>
+            {news.map((article) => (
+                <Grid
+                    item
+                    lg={3}
+                    md={3}
+                    sm={3}
+                    xs={12}
+                    key={article?.id}
+                    style={{ height: '350px' }}
+                >
+                    <ArticleCard
+                        article={article}
+                        api="articles"
+                        variant="verticle"
+                    />
+                </Grid>
+            ))}
+        </Grid>
+    )
     return (
         <>
+            {/* <SEO /> */}
             <Hidden smDown>
                 <Logo />
             </Hidden>
             <Container>
-                <Grid container spacing={4}>
-                    <Grid item lg={3} md={3} sm={3}>
-                        <TitleDecoration>Articles</TitleDecoration>
-                        {news &&
-                            news.map((article) => (
-                                <div
-                                    key={article?.id}
-                                    style={{ height: '350px' }}
-                                >
-                                    <ArticleCard
-                                        article={article}
-                                        api="articles"
-                                        variant="verticle"
-                                    />
-                                </div>
-                            ))}
+                <Grid container spacing={3}>
+                    <Grid item lg={12} md={12} sm={12}>
+                        {loading ? <>{Skeleton}</> : <>{DataCard}</>}
                     </Grid>
                 </Grid>
             </Container>

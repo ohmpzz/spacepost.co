@@ -2,7 +2,7 @@ import React from 'react'
 import { RouteComponentProps, useParams } from 'react-router-dom'
 import styled from '@emotion/styled'
 import { Container, Grid } from '@material-ui/core'
-import { TitleDecoration } from 'src/components'
+import { TitleDecoration, SEO } from 'src/components'
 import { getIdFromSlug, scale, rhythm } from 'src/utils'
 import { format } from 'date-fns'
 import { useFetchSpaceNewsAPI } from 'src/hooks'
@@ -29,11 +29,24 @@ const CoverImg = styled.img`
 // todo เพิ่ม article card ตรง latest
 export function ArticleDetail(props: RouteComponentProps) {
     const params = useParams<{ id: string; api: API }>()
+
     const id = getIdFromSlug(params?.id)
     const news = useFetchSpaceNewsAPI(params.api).GetById(id)
 
     return (
         <Container maxWidth="lg">
+            <SEO
+                title={news?.title}
+                description={news?.summary}
+                image={news?.imageUrl}
+                last_updated_date={news?.updatedAt}
+                articleid={news?.id}
+                article={{
+                    section: params.api,
+                    published_time: news?.publishedAt,
+                    modified_time: news?.updatedAt,
+                }}
+            />
             <Category>{params.api}</Category>
             <h1
                 style={{
@@ -79,7 +92,9 @@ export function ArticleDetail(props: RouteComponentProps) {
                 </Grid>
                 <Grid item lg={3} md={3}>
                     <aside>
-                        <TitleDecoration>Latest</TitleDecoration>
+                        <TitleDecoration>
+                            <p>Latest</p>
+                        </TitleDecoration>
                         <div>article card</div>
                     </aside>
                 </Grid>
