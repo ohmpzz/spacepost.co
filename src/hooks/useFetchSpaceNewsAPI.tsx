@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import axios, { AxiosResponse, AxiosError } from 'axios'
 import queryString from 'query-string'
 import { API, Option, SpaceNews } from 'src/models'
-import useDeepCompareEffect from 'use-deep-compare-effect'
+import { useDeepCompareEffect } from 'react-use'
 import urljoin from 'url-join'
 
 export function useFetchSpaceNewsAPI(api: API) {
