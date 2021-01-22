@@ -1,6 +1,5 @@
 import React from 'react'
 import { rhythm } from 'src/utils'
-import Footer from './Footer'
 
 import Navbar from './Navbar'
 
@@ -13,7 +12,6 @@ export function Layout(props: LayoutProps) {
         <>
             <Navbar />
             <main style={{ marginTop: rhythm(4) }}>{props.children}</main>
-            <Footer />
         </>
     )
 }
