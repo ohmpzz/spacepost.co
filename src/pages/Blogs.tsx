@@ -4,11 +4,12 @@ import { ArticleCard, ArticleCardSkeleton } from 'src/components'
 import { Container, Grid, Hidden, Box } from '@material-ui/core'
 import { useFetchSpaceNewsAPI } from 'src/hooks'
 import { rhythm, scale } from 'src/utils'
+import { SEO } from 'src/components'
 export function Blogs(props: RouteComponentProps) {
     const { news, loading } = useFetchSpaceNewsAPI('blogs').GetAll({
         _limit: 10,
     })
-
+    console.log({ news })
     const Skeleton = (
         <Grid container spacing={2}>
             {[...Array(4)].map((x) => (
@@ -26,6 +27,7 @@ export function Blogs(props: RouteComponentProps) {
                     lg={3}
                     md={3}
                     sm={3}
+                    xs={12}
                     key={article?.id}
                     style={{ height: '350px' }}
                 >
@@ -40,6 +42,7 @@ export function Blogs(props: RouteComponentProps) {
     )
     return (
         <>
+            <SEO title={'Blogs'} />
             <Hidden smDown>
                 <Container>
                     <Grid container spacing={3}>

@@ -4,6 +4,7 @@ import useFetchSpaceNewsAPI from 'src/hooks/useFetchSpaceNewsAPI'
 import { Container, Grid, Hidden, Box } from '@material-ui/core'
 import { ArticleCard, ArticleCardSkeleton } from 'src/components'
 import { rhythm, scale } from 'src/utils'
+import { SEO } from 'src/components'
 export function Reports(props: RouteComponentProps) {
     const { news, loading } = useFetchSpaceNewsAPI('reports').GetAll({
         _limit: 10,
@@ -39,6 +40,7 @@ export function Reports(props: RouteComponentProps) {
     )
     return (
         <>
+            <SEO title={'Reports'} />
             <Hidden smDown>
                 <Container>
                     <Grid container spacing={3}>

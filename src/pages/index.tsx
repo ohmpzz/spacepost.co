@@ -2,6 +2,7 @@ import React from 'react'
 import { Logo, ArticleCard, ArticleCardSkeleton } from 'src/components'
 import { Container, Grid, Hidden } from '@material-ui/core'
 import { useFetchSpaceNewsAPI } from 'src/hooks'
+import { SEO } from 'src/components'
 export function IndexPage() {
     const { news, loading } = useFetchSpaceNewsAPI('articles').GetAll({
         _limit: 10,
@@ -39,7 +40,7 @@ export function IndexPage() {
     )
     return (
         <>
-            {/* <SEO /> */}
+            <SEO title={'Home'} />
             <Hidden smDown>
                 <Logo />
             </Hidden>
