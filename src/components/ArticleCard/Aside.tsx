@@ -5,7 +5,6 @@ import { Grid } from '@material-ui/core'
 import { scale, rhythm } from 'src/utils'
 import { SpaceNews, API } from 'src/models'
 import kebabCase from 'lodash.kebabcase'
-
 const Article = styled.article`
     &:not(:first-of-type) {
         margin-top: ${rhythm(1)} !important;
@@ -28,6 +27,7 @@ interface AsideProps {
 
 export function Aside(props: AsideProps) {
     const { article } = props
+    console.log({ props })
     const slug = `/${props?.api}/${kebabCase(`${article.title}`)}-${article.id}`
     return (
         <Article>
