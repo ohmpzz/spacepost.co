@@ -11,8 +11,7 @@ interface ArticleCardProps {
 }
 
 const Article = styled.article`
-    border-bottom: 1px solid hsl(0, 0%, 50%);
-    height: 450px;
+    height: 350px;
     &:not(:first-of-type) {
         margin-top: ${rhythm(1)};
     }
@@ -56,11 +55,13 @@ const Link = styled(RouterLink)`
 const Title = styled.h2`
     font-size: ${scale(1 / 5).fontSize};
     line-height: ${scale(1 / 5).lineHeight};
+
     margin-bottom: ${rhythm(0.5)};
 `
 
 export function Verticle(props: ArticleCardProps) {
     const { article } = props
+
     const slug = `/${props?.api}/${kebabCase(`${article.title}`)}-${article.id}`
     return (
         <Article>
