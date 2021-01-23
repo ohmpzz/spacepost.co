@@ -9,11 +9,17 @@ export function Blogs(props: RouteComponentProps) {
     const { news, loading } = useFetchSpaceNewsAPI('blogs').GetAll({
         _limit: 10,
     })
-    console.log({ news })
     const Skeleton = (
         <Grid container spacing={2}>
-            {[...Array(4)].map((x) => (
-                <Grid item lg={3} md={3} sm={3} style={{ height: '350px' }}>
+            {[...Array(4)].map((x, i) => (
+                <Grid
+                    key={i}
+                    item
+                    lg={3}
+                    md={3}
+                    sm={3}
+                    style={{ height: '350px' }}
+                >
                     <ArticleCardSkeleton />
                 </Grid>
             ))}

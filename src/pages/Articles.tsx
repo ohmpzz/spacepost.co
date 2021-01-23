@@ -5,6 +5,7 @@ import { Container, Grid, Hidden, Box } from '@material-ui/core'
 import { useFetchSpaceNewsAPI } from 'src/hooks'
 import { scale, rhythm } from 'src/utils'
 import { SEO } from 'src/components'
+
 export function Articles(props: RouteComponentProps) {
     const { news, loading } = useFetchSpaceNewsAPI('articles').GetAll({
         _limit: 10,
@@ -12,8 +13,15 @@ export function Articles(props: RouteComponentProps) {
 
     const Skeleton = (
         <Grid container spacing={2}>
-            {[...Array(4)].map((x) => (
-                <Grid item lg={3} md={3} sm={3} style={{ height: '350px' }}>
+            {[...Array(4)].map((x, i) => (
+                <Grid
+                    key={i}
+                    item
+                    lg={3}
+                    md={3}
+                    sm={3}
+                    style={{ height: '350px' }}
+                >
                     <ArticleCardSkeleton />
                 </Grid>
             ))}
@@ -71,4 +79,6 @@ export function Articles(props: RouteComponentProps) {
     )
 }
 
-export default Articles
+export const MemorizedArticles = React.memo(Articles)
+
+export default MemorizedArticles

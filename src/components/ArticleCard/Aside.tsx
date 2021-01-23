@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
-import { Link } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { Grid } from '@material-ui/core'
 import { scale, rhythm } from 'src/utils'
 import { SpaceNews, API } from 'src/models'
@@ -20,6 +20,9 @@ const Title = styled.h2`
     margin-bottom: ${rhythm(0.5)};
 `
 
+const Link = styled(RouterLink)`
+    text-decoration: none;
+`
 interface AsideProps {
     article: SpaceNews
     api: API
@@ -27,7 +30,7 @@ interface AsideProps {
 
 export function Aside(props: AsideProps) {
     const { article } = props
-    console.log({ props })
+    console.log(props)
     const slug = `/${props?.api}/${kebabCase(`${article.title}`)}-${article.id}`
     return (
         <Article>
@@ -39,7 +42,7 @@ export function Aside(props: AsideProps) {
                 }}
             >
                 <Grid item lg={8} md={8} sm={8} xs={8}>
-                    <Link to={slug} style={{ textDecoration: 'none' }}>
+                    <Link to={slug}>
                         <Title>{article?.title}</Title>
                         <p style={{ color: 'hsl(0,0%,50%)', ...scale(-2 / 5) }}>
                             By {article.newsSite}
