@@ -6,7 +6,7 @@ import { useDeepCompareEffect } from 'react-use'
 import urljoin from 'url-join'
 
 export function useFetchSpaceNewsAPI(api: API) {
-    const BASE_URL = `https://api.spaceflightnewsapi.net/v3`
+    const BASE_URL = `https://api.spaceflightnewsapi.net/v4`
     function GetAll(option?: Option) {
         const [news, setNews] = useState<SpaceNews[]>([])
         const [latest, setLatest] = useState<SpaceNews[]>([])
